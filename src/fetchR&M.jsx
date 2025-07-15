@@ -12,7 +12,7 @@ export default function FetchTable({
   setHighscore,
 }) {
   useEffect(() => {
-    fetch(url + "/[1,2,3,4,5,6,7,9,10,11]", { mode: "cors" })
+    fetch(url + "/[1,2,3,4,5,6,7,9,10,11,12,16]", { mode: "cors" })
       .then((data) => data.json())
       .then((raw) => {
         const scrambled = scramble(raw)
@@ -33,13 +33,13 @@ export default function FetchTable({
 
   function updateScore(char) {
     if (clickedCharacters.includes(char)) {
-      setHighscore(score)
+      if (score > highscore) setHighscore(score)
       setScore(0)
       setClickedCharacters([])
     } else setScore((prev) => prev + 1)
   }
   const images = characterList.map((character) => (
-    <div key={character.id}>
+    <div key={character.id} className="charCard">
       <img
         src={character.image}
         alt={character.name}
@@ -50,8 +50,9 @@ export default function FetchTable({
           updateScore(character)
         }}
       />
+      <p>{character.name}</p>
     </div>
   ))
 
-  return <div>{images}</div>
+  return <div className="cardContainer">{images}</div>
 }

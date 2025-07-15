@@ -16,8 +16,11 @@ function App() {
 
   return (
     <div>
-      <Score score={score} />
-      <Highscore highscore={highscore} />
+      <h1>Rick & Morty Memory Game</h1>
+      <div className="allScoresContainer">
+        <Score score={score} />
+        <Highscore highscore={highscore} />
+      </div>
       <FetchTable
         url={url}
         characterList={characterList}

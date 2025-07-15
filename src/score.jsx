@@ -1,8 +1,3 @@
-export default function Score({score}){
-    return (
-        <div>
-            Score is {score}
-        </div>
-
-    )
-}   
+export default function Score({ score }) {
+  return <div className="scoreContainer">Score is {score}</div>
+}
