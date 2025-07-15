@@ -1,4 +1,4 @@
-exprot default function Score({score}){
+export default function Score({score}){
     return (
         <div>
             Score is {score}
