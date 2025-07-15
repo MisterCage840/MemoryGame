@@ -1,6 +1,16 @@
 import { useEffect } from "react"
 
-export default function FetchTable({ url, characterList, setCharacterList }) {
+export default function FetchTable({
+  url,
+  characterList,
+  setCharacterList,
+  clickedCharacters,
+  setClickedCharacters,
+  score,
+  setScore,
+  highscore,
+  setHighscore,
+}) {
   useEffect(() => {
     fetch(url + "/[1,2,3,4,5,6,7,9,10,11]", { mode: "cors" })
       .then((data) => data.json())
@@ -21,13 +31,23 @@ export default function FetchTable({ url, characterList, setCharacterList }) {
     return newArray
   }
 
+  function updateScore(char) {
+    if (clickedCharacters.includes(char)) {
+      setHighscore(score)
+      setScore(0)
+      setClickedCharacters([])
+    } else setScore((prev) => prev + 1)
+  }
   const images = characterList.map((character) => (
     <div key={character.id}>
       <img
         src={character.image}
+        alt={character.name}
         onClick={() => {
           let scrambled = scramble(characterList)
           setCharacterList(scrambled)
+          setClickedCharacters([...clickedCharacters, character])
+          updateScore(character)
         }}
       />
     </div>
