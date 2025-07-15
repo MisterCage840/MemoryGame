@@ -4,27 +4,34 @@ export default function FetchTable({ url, characterList, setCharacterList }) {
   useEffect(() => {
     fetch(url + "/[1,2,3,4,5,6,7,9,10,11]", { mode: "cors" })
       .then((data) => data.json())
-      .then((raw) => setCharacterList(raw))
-
+      .then((raw) => {
+        const scrambled = scramble(raw)
+        setCharacterList(scrambled)
+      })
     return () => console.log("Cleanup")
   }, [])
 
-  function scramble() {
-    let newArray = [...characterList]
+  function scramble(arr) {
+    let newArray = [...arr]
 
     for (let i = newArray.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1))
       ;[newArray[i], newArray[j]] = [newArray[j], newArray[i]]
     }
-
-    setCharacterList(newArray)
+    return newArray
   }
 
   const images = characterList.map((character) => (
     <div key={character.id}>
-      <img src={character.image} onClick={scramble} />
-      {character.name}
+      <img
+        src={character.image}
+        onClick={() => {
+          let scrambled = scramble(characterList)
+          setCharacterList(scrambled)
+        }}
+      />
     </div>
   ))
+
   return <div>{images}</div>
 }
