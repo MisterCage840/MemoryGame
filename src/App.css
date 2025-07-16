@@ -1,49 +1,83 @@
 @font-face {
-  src: url("../src/assets/get_schwifty.ttf") format("truetype");
   font-family: "Get Schwifty";
+  src: url("../src/assets/get_schwifty.ttf") format("truetype");
+  font-display: swap;
 }
+
 body {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   text-align: center;
-  height: 100%;
-  color: #213547;
+  min-height: 100vh;
+  margin: 0;
+  background: radial-gradient(circle at center, #1b1b2f, #162447);
+  color: #fafafa;
+  font-family: Arial, sans-serif;
 }
+
 h1 {
   margin-bottom: 2rem;
+  font-family: "Get Schwifty", cursive;
+  font-size: 2.5rem;
+  color: #00ff91;
+  text-shadow: 2px 2px 4px #00000080;
 }
+
 .allScoresContainer {
   display: flex;
-  gap: 10px;
   flex-direction: column;
-  margin-bottom: 1rem;
+  gap: 10px;
+  margin-bottom: 2rem;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1rem;
+  border-radius: 8px;
 }
+
 .cardContainer {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
-img {
-  border-radius: 5px;
-  box-shadow: 3px 3px 3px #58c24a;
-}
+
 .charCard {
   display: flex;
   flex-direction: column;
-  padding: 5px;
-  border-radius: 5px;
-  background: #22c1c3;
-  background: linear-gradient(
-    0deg,
-    rgba(34, 193, 195, 1) 0%,
-    rgba(253, 187, 45, 1) 100%
-  );
+  align-items: center;
+  padding: 8px;
+  border-radius: 10px;
+  background: linear-gradient(145deg, #22c1c3, #fdbb2d);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.charCard:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
 }
 
 .charCard p {
-  color: #213547;
-  font-weight: bold;
-  font-family: "Get Schwifty";
-  font-size: 1.3rem;
+  margin-top: 0.5rem;
+  font-family: "Get Schwifty", cursive;
+  font-size: 1.2rem;
+  color: #1b1b2f;
+  text-shadow: 1px 1px 2px #ffffff60;
+}
+
+img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 3px 6px rgba(88, 194, 74, 0.5);
+  transition: transform 0.3s ease;
+}
+
+img:hover {
+  transform: rotate(-2deg) scale(1.03);
 }

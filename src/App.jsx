@@ -32,6 +32,12 @@ function App() {
         highscore={highscore}
         setHighscore={setHighscore}
       />
+      <footer>
+        © Designed by{" "}
+        <a href="https://github.com/MisterCage840/MemoryGame" target={"_blank"}>
+          MisterCage840
+        </a>
+      </footer>
     </div>
   )
 }
